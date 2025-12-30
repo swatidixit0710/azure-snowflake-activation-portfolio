@@ -54,4 +54,61 @@ PATTERN = '.*\\.csv';
 ```
 ---
 
+### 4. Troubleshooting
+### Issue: Error: `Integration cannot be null for AZURE`
+### Cause
+- For Azure-based Snowpipe, a **Notification Integration** is mandatory.  
+- A Storage Integration alone only allows data access, not event-based ingestion.
+### Fix
+- Created a Notification Integration using `AZURE_STORAGE_QUEUE`
+- Referenced it explicitly in the pipe definition:
+```sql
+INTEGRATION = 'BOOKS_NOTIF_INT'
+```
+
+### Issue: Snowflake application not visible in Azure IAM
+### Cause
+- Azure tenant consent had not been granted yet
+- The Enterprise Application had not been materialized in the tenant
+### Fix
+- Opened and accepted the AZURE_CONSENT_URL from Snowflake
+- Waited several minutes for Azure propagation
+- Located the app under Microsoft Entra ID → Enterprise Applications
+- Assigned RBAC after the app appeared
+
+### Issue: Error authenticating with Azure when accessing stage or Snowpipe
+### Cause
+- Missing or incorrect Azure RBAC permissions 
+### Fix
+- Assigned Storage Blob Data Reader to the Snowflake app on the Storage Account
+- Assigned Storage Queue Data Contributor to the Snowflake app on the Storage Queue
+- Waited for RBAC propagation
+- Verified access using:
+```sql
+LIST @azure_books_stage;
+```
+
+### Issue: Event Grid system topic creation fails
+### Cause
+- The Event Grid resource provider was not registered for the subscription
+### Fix
+- Azure Portal → Subscriptions → Resource providers
+- Registered Microsoft.EventGrid
+- Retried Event Grid configuration
+
+### Issue: Files uploaded but Snowpipe does not trigger
+### Cause
+- Event Grid subject filter mismatch
+- Missing queue permissions
+- Files existed before Snowpipe creation
+### Fix
+- Verified Event Grid subject filter
+- Confirmed queue permissions for the Snowflake app
+- Loaded existing files using:
+```sql
+ALTER PIPE books_snowpipe REFRESH;
+```
+
+
+
 
