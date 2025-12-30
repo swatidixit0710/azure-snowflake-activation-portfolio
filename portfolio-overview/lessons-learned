@@ -1,1 +1,8 @@
+# Lessons Learned
+
+- Most activation blockers are related to cloud identity and permissions.
+- Azure tenant consent and RBAC propagation are common failure points.
+- Starting simple builds trust faster than complex architectures.
+- Automation should follow value, not precede it.
+- Clear documentation reduces long-term support burden.
 
