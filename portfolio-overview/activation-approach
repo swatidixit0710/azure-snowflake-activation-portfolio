@@ -1,1 +1,45 @@
+# Activation Approach (Snowflake ASE)
+
+My goal as a Solution Engineer is to reduce time-to-value
+while setting customers up for long-term success.
+
+I optimize for progress, not perfection.
+
+---
+
+## Phase 1 — First Workload
+Objective: Deliver a successful query as quickly as possible.
+
+- Start with the simplest ingestion method that works
+- Avoid premature automation
+- Use secure, cloud-native access patterns
+- Validate success with business-relevant queries
+
+Outcome:
+- Customer confidence
+- Clear proof of Snowflake value
+
+---
+
+## Phase 2 — Automation
+Objective: Reduce manual effort once ingestion becomes recurring.
+
+- Introduce Snowpipe only when justified
+- Use event-driven ingestion
+- Keep costs predictable and visible
+
+Outcome:
+- Scalable ingestion
+- Low operational overhead
+
+---
+
+## Phase 3 — Enablement
+Objective: Leave the customer self-sufficient.
+
+- Document architecture and decisions
+- Provide troubleshooting guidance
+- Explain tradeoffs clearly
+
+Activation is successful when the customer no longer depends on me.
 
