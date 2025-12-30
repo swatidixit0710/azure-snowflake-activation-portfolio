@@ -42,7 +42,7 @@ It is the recommended approach once ingestion becomes recurring.
 
 ---
 
-## Snowpipe Definition (Conceptual)
+## Snowpipe Definition
 ```sql
 CREATE PIPE books_snowpipe
   AUTO_INGEST = TRUE
