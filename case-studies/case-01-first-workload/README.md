@@ -1,23 +1,46 @@
-# Case Study 01 — First workload: Azure Blob Storage → Snowflake
+# Case Study 01 - First Workload Activation
 
-## Customer goal
-Analyze book catalog data stored in Azure Blob Storage using Snowflake.
+## Customer Goal
+The customer had data landing in Azure Blob Storage and needed
+to quickly analyze it in Snowflake without exposing storage keys or over-engineering
+the ingestion process.
 
-## Data
-CSV file (`books.csv`) containing book metadata including authors, genres,
-pricing, and publication year.
+The priority was **fast time-to-value** with **secure cloud-native access**.
 
-## What I built
-- Azure Blob Storage private container as the landing zone
-- Snowflake warehouse, database, schema, and table
-- Secure access using Snowflake storage integration (no shared keys)
-- External stage + COPY INTO
-- Validation queries to confirm ingestion success
+---
 
-## Outcome
-- Successfully loaded Azure Blob Storage data into Snowflake
-- Validated row counts and business metrics
-- Delivered first analytical value within minutes
-- Established secure, production-ready access pattern
+## Architecture Overview
+Azure Blob Storage serves as the landing zone for raw data.
+Snowflake securely accesses the data using a **Storage Integration**
+(no shared keys, no SAS tokens), then loads it using `COPY INTO`.
+
+Key components:
+- Azure Blob Storage (private container)
+- Snowflake Storage Integration (Azure AD–based identity)
+- External Stage
+- Snowflake Warehouse (X-Small, auto-suspend)
+- Target table (`BOOKS_RAW`)
+
+---
+
+## Implementation Steps (High Level)
+
+### 1. Azure Setup
+- Created a dedicated resource group for the project
+- Created a storage account (Standard / LRS)
+- Created a private container: `landing`
+- Uploaded `books.csv`
+
+### 2. Snowflake Setup
+- Created a small warehouse (`ACTIVATION_WH`) with auto-suspend
+- Created database, schema, and table (`BOOKS_RAW`)
+- Created a **Storage Integration** for Azure
+- Granted RBAC in Azure to the Snowflake Enterprise Application
+- Created an external stage referencing the Azure container
+
+### 3. Load & Validate
+- Loaded data using `COPY INTO`
+- Validated success with business queries
+
 
 
