@@ -1,0 +1,16 @@
+# Common Activation Issues
+
+## Storage Integration Fails
+- Verify tenant consent
+- Verify Azure RBAC
+- Validate allowed locations
+
+## Snowpipe Does Not Trigger
+- Confirm notification integration exists
+- Verify Event Grid configuration
+- Refresh pipe for historical files
+
+## Authentication Errors
+- Check Enterprise Application presence
+- Validate role assignments
+- Allow time for propagation
