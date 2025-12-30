@@ -43,23 +43,23 @@ Key components:
 - Validated success with business queries
 
 ### 4. Troubleshooting
-#### Issue: LIST @stage fails with authentication errors
-##### Cause
--- Azure RBAC not granted to Snowflake service principal
--- Tenant consent not completed
-##### Fix
--- Assign Storage Blob Data Reader role to Snowflake app
--- Open and accept AZURE_CONSENT_URL
--- Wait for RBAC propagation before retrying
+### Issue: LIST @stage fails with authentication errors
+### Cause
+- Azure RBAC not granted to Snowflake service principal
+- Tenant consent not completed
+### Fix
+- Assign Storage Blob Data Reader role to Snowflake app
+- Open and accept AZURE_CONSENT_URL
+- Wait for RBAC propagation before retrying
 
-#### Issue: COPY INTO loads 0 rows
-##### Cause
--- File pattern mismatch
--- File format mismatch (header, delimiter, quoting)
-##### Fix
--- Validate files with LIST @stage
--- Explicitly define file format
--- Use correct PATTERN
+### Issue: COPY INTO loads 0 rows
+### Cause
+- File pattern mismatch
+- File format mismatch (header, delimiter, quoting)
+### Fix
+- Validate files with LIST @stage
+- Explicitly define file format
+- Use correct PATTERN
 
 
 
