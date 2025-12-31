@@ -8,3 +8,7 @@ using Azure as the supporting cloud platform.
 - Case Study 01: First workload activation
 - Case Study 02: Automated ingestion with Snowpipe
 
+## Certifications
+- AZ - 104 - In Progress
+
+
